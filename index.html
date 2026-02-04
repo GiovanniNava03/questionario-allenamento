@@ -196,7 +196,7 @@
 
         .inline-fields {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
         }
 
@@ -253,46 +253,165 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 20px 10px;
+                padding: 15px 10px;
             }
 
             .container {
-                padding: 30px 20px;
+                padding: 25px 15px;
             }
 
             h1 {
-                font-size: 26px;
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
             }
 
             .section {
-                padding: 20px;
+                padding: 20px 15px;
+                margin-bottom: 25px;
             }
 
             .section-title {
                 font-size: 16px;
             }
 
+            /* Ottimizzazione campi di input per mobile */
+            input[type="text"],
+            input[type="date"],
+            input[type="number"],
+            input[type="tel"],
+            textarea {
+                padding: 16px 14px;
+                font-size: 16px; /* iOS non fa zoom se >= 16px */
+                min-height: 48px; /* Touch target size raccomandato */
+            }
+
+            textarea {
+                min-height: 120px;
+                padding: 14px;
+            }
+
+            /* Forza layout a colonna singola su mobile */
+            .inline-fields {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            label {
+                font-size: 15px;
+                margin-bottom: 8px;
+            }
+
             .radio-group {
-                gap: 6px;
+                gap: 8px;
+                padding: 12px;
             }
 
             .radio-item {
-                padding: 8px 12px;
-                font-size: 14px;
+                padding: 12px 14px;
+                font-size: 15px;
+                min-height: 44px;
             }
 
             .checkbox-item {
                 flex-wrap: wrap;
+                padding: 10px;
+                min-height: 44px;
             }
 
             .checkbox-item input[type="text"] {
                 width: 100%;
-                margin-left: 32px;
-                margin-top: 8px;
+                margin-left: 0;
+                margin-top: 10px;
             }
 
             .checkbox-group {
-                padding: 12px;
+                padding: 10px;
+                gap: 10px;
+            }
+
+            input[type="checkbox"],
+            input[type="radio"] {
+                width: 22px;
+                height: 22px;
+                min-width: 22px;
+                min-height: 22px;
+            }
+
+            .submit-btn {
+                padding: 18px;
+                font-size: 18px;
+                min-height: 54px;
+            }
+
+            .age-display {
+                display: block;
+                margin-left: 0;
+                margin-top: 10px;
+                padding: 10px 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 5px;
+            }
+
+            .container {
+                padding: 20px 12px;
+                border-radius: 12px;
+            }
+
+            h1 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+                margin-bottom: 30px;
+            }
+
+            .section {
+                padding: 15px 12px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 15px;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            input[type="number"],
+            input[type="tel"] {
+                padding: 14px 12px;
+            }
+
+            .radio-group {
+                padding: 10px;
+                gap: 6px;
+            }
+
+            .radio-item {
+                padding: 10px 12px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .checkbox-group {
+                padding: 8px;
+            }
+
+            .checkbox-item {
+                padding: 8px;
             }
         }
 
