@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionario di Valutazione per l'Allenamento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #1a202c;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 16px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid #3182ce;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transform: translateX(2px);
+        }
+
+        .section-title {
+            color: #2d3748;
+            font-size: 18px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #3182ce, #2c5282);
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.2px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            background: white;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3182ce;
+            box-shadow: 0 0 0 3px rgba(49,130,206,0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            font-family: inherit;
+            line-height: 1.6;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #f7fafc;
+        }
+
+        .checkbox-item input[type="text"] {
+            min-width: 0;
+            flex-shrink: 1;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #3182ce;
+            flex-shrink: 0;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-item:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .radio-item:has(input:checked) {
+            background: #ebf8ff;
+            border-color: #3182ce;
+        }
+
+        .inline-fields {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .required {
+            color: #e53e3e;
+            font-weight: 700;
+        }
+
+        .age-display {
+            display: inline-block;
+            margin-left: 10px;
+            color: #3182ce;
+            font-weight: 700;
+            background: #ebf8ff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 16px;
+            }
+
+            .radio-group {
+                gap: 6px;
+            }
+
+            .radio-item {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .checkbox-item {
+                flex-wrap: wrap;
+            }
+
+            .checkbox-item input[type="text"] {
+                width: 100%;
+                margin-left: 32px;
+                margin-top: 8px;
+            }
+
+            .checkbox-group {
+                padding: 12px;
+            }
+        }
+
+        small {
+            color: #718096;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Questionario di Valutazione</h1>
+        <p class="subtitle">Compila attentamente il questionario per personalizzare il tuo percorso di allenamento</p>
+        
+        <form id="questionarioForm">
+            <!-- Dati Anagrafici -->
+            <div class="section">
+                <div class="form-group">
+                    <label>Data compilazione: <span class="required">*</span></label>
+                    <input type="date" id="dataCompilazione" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nome e Cognome: <span class="required">*</span></label>
+                    <input type="text" id="nomeCognome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Data di nascita: <span class="required">*</span></label>
+                    <input type="date" id="dataNascita" required>
+                    <span class="age-display" id="etaDisplay"></span>
+                </div>
+                
+                <div class="inline-fields">
+                    <div class="form-group">
+                        <label>Altezza (cm): <span class="required">*</span></label>
+                        <input type="number" id="altezza" min="100" max="250" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Peso (kg): <span class="required">*</span></label>
+                        <input type="number" id="peso" min="30" max="300" step="0.1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Contatto (facoltativo):</label>
+                    <input type="text" id="contatto">
+                </div>
+            </div>
+
+            <!-- OBIETTIVI DELL'ALLENAMENTO -->
+            <div class="section">
+                <h2 class="section-title">OBIETTIVI DELL'ALLENAMENTO</h2>
+                
+                <div class="form-group">
+                    <label>1. Qual è il tuo obiettivo principale?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ob1" name="obiettivo" value="Aumento massa muscolare">
+                            <label for="ob1">Aumento massa muscolare</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ob2" name="obiettivo" value="Dimagrimento">
+                            <label for="ob2">Dimagrimento</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ob3" name="obiettivo" value="Miglioramento forza">
+                            <label for="ob3">Miglioramento forza</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ob4" name="obiettivo" value="Miglioramento estetico">
+                            <label for="ob4">Miglioramento estetico</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ob5" name="obiettivo" value="Salute generale">
+                            <label for="ob5">Salute generale</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ob6" name="obiettivo" value="altro">
+                            <label for="ob6">Altro:</label>
+                            <input type="text" id="obAltro" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>2. Hai una scadenza temporale o un obiettivo specifico?</label>
+                    <textarea id="scadenza"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>3. Quanto sei motivato ad allenarti con costanza? (da 1 a 10)</label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="motivazione" value="1" id="mot1"><label for="mot1">1</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="2" id="mot2"><label for="mot2">2</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="3" id="mot3"><label for="mot3">3</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="4" id="mot4"><label for="mot4">4</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="5" id="mot5"><label for="mot5">5</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="6" id="mot6"><label for="mot6">6</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="7" id="mot7"><label for="mot7">7</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="8" id="mot8"><label for="mot8">8</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="9" id="mot9"><label for="mot9">9</label></div>
+                        <div class="radio-item"><input type="radio" name="motivazione" value="10" id="mot10"><label for="mot10">10</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STORIA DI ALLENAMENTO -->
+            <div class="section">
+                <h2 class="section-title">STORIA DI ALLENAMENTO</h2>
+                
+                <div class="form-group">
+                    <label>4. Hai mai praticato attività fisica o sport in passato?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="sport1" name="sport" value="No">
+                            <label for="sport1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="sport2" name="sport" value="si">
+                            <label for="sport2">Sì, quale/i:</label>
+                            <input type="text" id="sportQuali" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>5. Ti sei mai allenato in palestra con i pesi?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="pesi1" name="pesi" value="No, è la prima volta">
+                            <label for="pesi1">No, è la prima volta</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="pesi2" name="pesi" value="si">
+                            <label for="pesi2">Sì, per quanto tempo:</label>
+                            <input type="text" id="pesiTempo" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>6. Da quanto tempo sei fermo/a dall'attività fisica?</label>
+                    <input type="text" id="tempoFermo">
+                </div>
+            </div>
+
+            <!-- STATO DI SALUTE GENERALE -->
+            <div class="section">
+                <h2 class="section-title">STATO DI SALUTE GENERALE</h2>
+                
+                <div class="form-group">
+                    <label>7. Il tuo medico ti ha mai vietato o limitato l'attività fisica?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="medico1" name="medico" value="No">
+                            <label for="medico1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="medico2" name="medico" value="si">
+                            <label for="medico2">Sì, specificare:</label>
+                            <input type="text" id="medicoSpec" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>8. Soffri o hai sofferto di una delle seguenti condizioni?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal1" name="salute" value="Problemi cardiaci">
+                            <label for="sal1">Problemi cardiaci</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal2" name="salute" value="Pressione alta">
+                            <label for="sal2">Pressione alta</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal3" name="salute" value="Problemi respiratori">
+                            <label for="sal3">Problemi respiratori (asma, ecc.)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal4" name="salute" value="Diabete">
+                            <label for="sal4">Diabete</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal5" name="salute" value="Problemi tiroidei">
+                            <label for="sal5">Problemi tiroidei</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal6" name="salute" value="altre">
+                            <label for="sal6">Altre patologie:</label>
+                            <input type="text" id="salAltre" style="width: auto; flex: 1;">
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sal7" name="salute" value="Nessuna">
+                            <label for="sal7">Nessuna</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>9. Assumi farmaci regolarmente?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="farm1" name="farmaci" value="No">
+                            <label for="farm1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="farm2" name="farmaci" value="si">
+                            <label for="farm2">Sì, quali:</label>
+                            <input type="text" id="farmQuali" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>10. Hai mai avuto svenimenti, capogiri o dolori al petto durante sforzi fisici?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="sven1" name="svenimenti" value="No">
+                            <label for="sven1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="sven2" name="svenimenti" value="si">
+                            <label for="sven2">Sì, spiegare:</label>
+                            <input type="text" id="svenSpec" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFORTUNI E PROBLEMI MUSCOLO-SCHELETRICI -->
+            <div class="section">
+                <h2 class="section-title">INFORTUNI E PROBLEMI MUSCOLO-SCHELETRICI</h2>
+                
+                <div class="form-group">
+                    <label>11. Hai mai avuto infortuni importanti?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="inf1" name="infortuni" value="No">
+                            <label for="inf1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="inf2" name="infortuni" value="si">
+                            <label for="inf2">Sì, quali e quando:</label>
+                            <input type="text" id="infQuali" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>12. Attualmente provi dolore in qualche parte del corpo?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="dol1" name="dolore" value="No">
+                            <label for="dol1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="dol2" name="dolore" value="si">
+                            <label for="dol2">Sì, dove:</label>
+                            <input type="text" id="dolDove" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>13. Hai subito interventi chirurgici?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="chir1" name="chirurgia" value="No">
+                            <label for="chir1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="chir2" name="chirurgia" value="si">
+                            <label for="chir2">Sì, quali e quando:</label>
+                            <input type="text" id="chirQuali" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STILE DI VITA -->
+            <div class="section">
+                <h2 class="section-title">STILE DI VITA</h2>
+                
+                <div class="form-group">
+                    <label>14. Che lavoro/studio svolgi?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="lav1" name="lavoro" value="Lavoro sedentario">
+                            <label for="lav1">Lavoro sedentario</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="lav2" name="lavoro" value="Lavoro fisico">
+                            <label for="lav2">Lavoro fisico</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="lav3" name="lavoro" value="Studio">
+                            <label for="lav3">Studio</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="lav4" name="lavoro" value="altro">
+                            <label for="lav4">Altro:</label>
+                            <input type="text" id="lavAltro" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>15. Quante ore al giorno stai seduto/a mediamente?</label>
+                    <input type="text" id="oreSeduto">
+                </div>
+                
+                <div class="form-group">
+                    <label>16. Quante ore dormi a notte (in media)?</label>
+                    <input type="text" id="oreSonno">
+                </div>
+                
+                <div class="form-group">
+                    <label>17. Livello di stress percepito (da 1 a 10):</label>
+                    <div class="radio-group">
+                        <div class="radio-item"><input type="radio" name="stress" value="1" id="str1"><label for="str1">1</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="2" id="str2"><label for="str2">2</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="3" id="str3"><label for="str3">3</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="4" id="str4"><label for="str4">4</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="5" id="str5"><label for="str5">5</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="6" id="str6"><label for="str6">6</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="7" id="str7"><label for="str7">7</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="8" id="str8"><label for="str8">8</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="9" id="str9"><label for="str9">9</label></div>
+                        <div class="radio-item"><input type="radio" name="stress" value="10" id="str10"><label for="str10">10</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALIMENTAZIONE -->
+            <div class="section">
+                <h2 class="section-title">ALIMENTAZIONE</h2>
+                
+                <div class="form-group">
+                    <label>18. Come descriveresti la tua alimentazione?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="alim1" name="alimentazione" value="Regolare">
+                            <label for="alim1">Regolare</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="alim2" name="alimentazione" value="Disordinata">
+                            <label for="alim2">Disordinata</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="alim3" name="alimentazione" value="Seguo una dieta">
+                            <label for="alim3">Seguo una dieta</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="alim4" name="alimentazione" value="Mangio spesso fuori casa">
+                            <label for="alim4">Mangio spesso fuori casa</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>19. Quanti pasti fai al giorno?</label>
+                    <input type="text" id="pasti">
+                </div>
+                
+                <div class="form-group">
+                    <label>20. Bevi alcolici?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="alc1" name="alcol" value="No">
+                            <label for="alc1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="alc2" name="alcol" value="si">
+                            <label for="alc2">Sì, quanto spesso:</label>
+                            <input type="text" id="alcFreq" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>21. Fumi?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="fum1" name="fumo" value="No">
+                            <label for="fum1">No</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="fum2" name="fumo" value="si">
+                            <label for="fum2">Sì, quante sigarette al giorno:</label>
+                            <input type="text" id="fumQuante" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISPONIBILITÀ ALL'ALLENAMENTO -->
+            <div class="section">
+                <h2 class="section-title">DISPONIBILITÀ ALL'ALLENAMENTO</h2>
+                
+                <div class="form-group">
+                    <label>22. Quante volte a settimana puoi allenarti in palestra?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="freq1" name="frequenza" value="1">
+                            <label for="freq1">1</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="freq2" name="frequenza" value="2">
+                            <label for="freq2">2</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="freq3" name="frequenza" value="3">
+                            <label for="freq3">3</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="freq4" name="frequenza" value="4">
+                            <label for="freq4">4</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="freq5" name="frequenza" value="5 o più">
+                            <label for="freq5">5 o più</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>23. Quanto tempo puoi dedicare a ogni allenamento?</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="dur1" name="durata" value="45 min">
+                            <label for="dur1">45 min</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="dur2" name="durata" value="60 min">
+                            <label for="dur2">60 min</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="dur3" name="durata" value="90 min">
+                            <label for="dur3">90 min</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="dur4" name="durata" value="altro">
+                            <label for="dur4">Altro:</label>
+                            <input type="text" id="durAltro" style="width: auto; flex: 1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>24. Preferisci allenarti:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" id="ora1" name="orario" value="Mattina">
+                            <label for="ora1">Mattina</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="ora2" name="orario" value="Pomeriggio">
+                            <label for="ora2">Pomeriggio</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" id="ora3" name="orario" value="Sera">
+                            <label for="ora3">Sera</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASPETTI PSICOLOGICI E MOTIVAZIONALI -->
+            <div class="section">
+                <h2 class="section-title">ASPETTI PSICOLOGICI E MOTIVAZIONALI</h2>
+                
+                <div class="form-group">
+                    <label>25. Cosa ti ha spinto a iniziare ad allenarti?</label>
+                    <textarea id="spinta"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>26. Qual è la tua più grande difficoltà quando inizi un percorso di allenamento?</label>
+                    <textarea id="difficolta"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>27. Cosa ti aspetti da questo percorso in palestra?</label>
+                    <textarea id="aspettative"></textarea>
+                </div>
+            </div>
+
+            <!-- CONSENSO INFORMATO -->
+            <div class="section">
+                <h2 class="section-title">CONSENSO INFORMATO</h2>
+                
+                <div class="form-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="consenso" required>
+                        <label for="consenso">
+                            Dichiaro che le informazioni fornite sono veritiere e complete.
+                            Sono consapevole che l'attività fisica comporta dei rischi e mi assumo la responsabilità della mia salute.
+                            <span class="required">*</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">📤 Invia via WhatsApp</button>
+        </form>
+    </div>
+
+    <script>
+        // Calcola automaticamente l'età
+        document.getElementById('dataNascita').addEventListener('change', function() {
+            const dataNascita = new Date(this.value);
+            const oggi = new Date();
+            let eta = oggi.getFullYear() - dataNascita.getFullYear();
+            const m = oggi.getMonth() - dataNascita.getMonth();
+            if (m < 0 || (m === 0 && oggi.getDate() < dataNascita.getDate())) {
+                eta--;
+            }
+            document.getElementById('etaDisplay').textContent = eta ? `Età: ${eta} anni` : '';
+        });
+
+        // Imposta la data di compilazione ad oggi
+        document.getElementById('dataCompilazione').valueAsDate = new Date();
+
+        // Gestione submit form
+        document.getElementById('questionarioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Numero WhatsApp fisso
+            const whatsappNumber = '393520014993';
+            
+            // Raccogli tutti i dati
+            const dati = raccogliDati();
+            
+            // Crea messaggio formattato
+            const messaggio = formattaMessaggio(dati);
+            
+            // Apri WhatsApp
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messaggio)}`;
+            window.open(url, '_blank');
+        });
+
+        function raccogliDati() {
+            const dati = {};
+            
+            // Dati anagrafici
+            dati.dataCompilazione = document.getElementById('dataCompilazione').value;
+            dati.nomeCognome = document.getElementById('nomeCognome').value;
+            dati.dataNascita = document.getElementById('dataNascita').value;
+            dati.eta = document.getElementById('etaDisplay').textContent;
+            dati.altezza = document.getElementById('altezza').value;
+            dati.peso = document.getElementById('peso').value;
+            dati.contatto = document.getElementById('contatto').value;
+            
+            // Obiettivi
+            dati.obiettivi = Array.from(document.querySelectorAll('input[name="obiettivo"]:checked'))
+                .map(cb => cb.value === 'altro' ? `Altro: ${document.getElementById('obAltro').value}` : cb.value)
+                .join(', ');
+            dati.scadenza = document.getElementById('scadenza').value;
+            dati.motivazione = document.querySelector('input[name="motivazione"]:checked')?.value || '';
+            
+            // Storia allenamento
+            const sportRadio = document.querySelector('input[name="sport"]:checked')?.value;
+            dati.sport = sportRadio === 'si' ? `Sì: ${document.getElementById('sportQuali').value}` : sportRadio || '';
+            
+            const pesiRadio = document.querySelector('input[name="pesi"]:checked')?.value;
+            dati.pesi = pesiRadio === 'si' ? `Sì: ${document.getElementById('pesiTempo').value}` : pesiRadio || '';
+            dati.tempoFermo = document.getElementById('tempoFermo').value;
+            
+            // Salute
+            const medicoRadio = document.querySelector('input[name="medico"]:checked')?.value;
+            dati.medico = medicoRadio === 'si' ? `Sì: ${document.getElementById('medicoSpec').value}` : medicoRadio || '';
+            
+            dati.salute = Array.from(document.querySelectorAll('input[name="salute"]:checked'))
+                .map(cb => cb.value === 'altre' ? `Altre: ${document.getElementById('salAltre').value}` : cb.value)
+                .join(', ');
+            
+            const farmaciRadio = document.querySelector('input[name="farmaci"]:checked')?.value;
+            dati.farmaci = farmaciRadio === 'si' ? `Sì: ${document.getElementById('farmQuali').value}` : farmaciRadio || '';
+            
+            const svenRadio = document.querySelector('input[name="svenimenti"]:checked')?.value;
+            dati.svenimenti = svenRadio === 'si' ? `Sì: ${document.getElementById('svenSpec').value}` : svenRadio || '';
+            
+            // Infortuni
+            const infRadio = document.querySelector('input[name="infortuni"]:checked')?.value;
+            dati.infortuni = infRadio === 'si' ? `Sì: ${document.getElementById('infQuali').value}` : infRadio || '';
+            
+            const dolRadio = document.querySelector('input[name="dolore"]:checked')?.value;
+            dati.dolore = dolRadio === 'si' ? `Sì: ${document.getElementById('dolDove').value}` : dolRadio || '';
+            
+            const chirRadio = document.querySelector('input[name="chirurgia"]:checked')?.value;
+            dati.chirurgia = chirRadio === 'si' ? `Sì: ${document.getElementById('chirQuali').value}` : chirRadio || '';
+            
+            // Stile di vita
+            const lavRadio = document.querySelector('input[name="lavoro"]:checked')?.value;
+            dati.lavoro = lavRadio === 'altro' ? `Altro: ${document.getElementById('lavAltro').value}` : lavRadio || '';
+            dati.oreSeduto = document.getElementById('oreSeduto').value;
+            dati.oreSonno = document.getElementById('oreSonno').value;
+            dati.stress = document.querySelector('input[name="stress"]:checked')?.value || '';
+            
+            // Alimentazione
+            dati.alimentazione = document.querySelector('input[name="alimentazione"]:checked')?.value || '';
+            dati.pasti = document.getElementById('pasti').value;
+            
+            const alcRadio = document.querySelector('input[name="alcol"]:checked')?.value;
+            dati.alcol = alcRadio === 'si' ? `Sì: ${document.getElementById('alcFreq').value}` : alcRadio || '';
+            
+            const fumRadio = document.querySelector('input[name="fumo"]:checked')?.value;
+            dati.fumo = fumRadio === 'si' ? `Sì: ${document.getElementById('fumQuante').value} sigarette/giorno` : fumRadio || '';
+            
+            // Disponibilità
+            dati.frequenza = document.querySelector('input[name="frequenza"]:checked')?.value || '';
+            
+            const durRadio = document.querySelector('input[name="durata"]:checked')?.value;
+            dati.durata = durRadio === 'altro' ? document.getElementById('durAltro').value : durRadio || '';
+            dati.orario = document.querySelector('input[name="orario"]:checked')?.value || '';
+            
+            // Aspetti psicologici
+            dati.spinta = document.getElementById('spinta').value;
+            dati.difficolta = document.getElementById('difficolta').value;
+            dati.aspettative = document.getElementById('aspettative').value;
+            
+            return dati;
+        }
+
+        function formattaMessaggio(dati) {
+            return `📋 *QUESTIONARIO VALUTAZIONE ALLENAMENTO*
+
+📅 *Data:* ${dati.dataCompilazione}
+👤 *Nome e Cognome:* ${dati.nomeCognome}
+🎂 *Data di nascita:* ${dati.dataNascita} (${dati.eta})
+📏 *Altezza:* ${dati.altezza} cm
+⚖️ *Peso:* ${dati.peso} kg
+${dati.contatto ? `📞 *Contatto:* ${dati.contatto}` : ''}
+
+━━━━━━━━━━━━━━━━
+
+*1️⃣ OBIETTIVI DELL'ALLENAMENTO*
+
+*Obiettivi principali:* ${dati.obiettivi}
+*Scadenza/Obiettivo specifico:* ${dati.scadenza || 'N/A'}
+*Livello motivazione:* ${dati.motivazione}/10
+
+━━━━━━━━━━━━━━━━
+
+*2️⃣ STORIA DI ALLENAMENTO*
+
+*Attività sportive passate:* ${dati.sport}
+*Allenamento con pesi:* ${dati.pesi}
+*Tempo di inattività:* ${dati.tempoFermo || 'N/A'}
+
+━━━━━━━━━━━━━━━━
+
+*3️⃣ STATO DI SALUTE*
+
+*Limitazioni mediche:* ${dati.medico}
+*Condizioni di salute:* ${dati.salute || 'Nessuna'}
+*Farmaci:* ${dati.farmaci}
+*Svenimenti/capogiri/dolori:* ${dati.svenimenti}
+
+━━━━━━━━━━━━━━━━
+
+*4️⃣ INFORTUNI*
+
+*Infortuni passati:* ${dati.infortuni}
+*Dolori attuali:* ${dati.dolore}
+*Interventi chirurgici:* ${dati.chirurgia}
+
+━━━━━━━━━━━━━━━━
+
+*5️⃣ STILE DI VITA*
+
+*Lavoro/Studio:* ${dati.lavoro}
+*Ore seduto/a:* ${dati.oreSeduto || 'N/A'}
+*Ore di sonno:* ${dati.oreSonno || 'N/A'}
+*Livello stress:* ${dati.stress}/10
+
+━━━━━━━━━━━━━━━━
+
+*6️⃣ ALIMENTAZIONE*
+
+*Tipo alimentazione:* ${dati.alimentazione}
+*Pasti al giorno:* ${dati.pasti || 'N/A'}
+*Alcol:* ${dati.alcol}
+*Fumo:* ${dati.fumo}
+
+━━━━━━━━━━━━━━━━
+
+*7️⃣ DISPONIBILITÀ*
+
+*Frequenza settimanale:* ${dati.frequenza} volte/settimana
+*Durata allenamento:* ${dati.durata}
+*Orario preferito:* ${dati.orario}
+
+━━━━━━━━━━━━━━━━
+
+*8️⃣ MOTIVAZIONE*
+
+*Motivazione iniziale:*
+${dati.spinta || 'N/A'}
+
+*Difficoltà principali:*
+${dati.difficolta || 'N/A'}
+
+*Aspettative:*
+${dati.aspettative || 'N/A'}
+
+━━━━━━━━━━━━━━━━
+
+✅ *Consenso informato confermato*`;
+        }
+    </script>
+</body>
+</html>
